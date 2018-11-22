@@ -24,50 +24,6 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate {
         print("loaded the map screen")
         self.mapView.delegate = self
         
-        hittingAPI()
-        
-        
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
-    // MARK: Actions
-    @IBAction func zoomInPressed(_ sender: Any) {
-        
-        print("zoom in!")
-        
-        var r = mapView.region
-        
-        print("Current zoom: \(r.span.latitudeDelta)")
-        
-        r.span.latitudeDelta = r.span.latitudeDelta / 4
-        r.span.longitudeDelta = r.span.longitudeDelta / 4
-        print("New zoom: \(r.span.latitudeDelta)")
-        print("-=------")
-        self.mapView.setRegion(r, animated: true)
-        
-        // HINT: Check MapExamples/ViewController.swift
-    }
-    
-    @IBAction func zoomOutPressed(_ sender: Any) {
-        // zoom out
-        print("zoom out!")
-        
-        var r = mapView.region
-        r.span.latitudeDelta = r.span.latitudeDelta * 2
-        r.span.longitudeDelta = r.span.longitudeDelta * 2
-        self.mapView.setRegion(r, animated: true)
-        
-        // HINT: Check MapExamples/ViewController.swift
-    }
-    
-    
-    func hittingAPI() {
-        
         let url = "https://opentable.herokuapp.com/api/restaurants?city=Toronto&per_page=5"
         
         Alamofire.request(url, method: .get, parameters: nil).responseJSON {
@@ -111,13 +67,54 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate {
                     }
                 }
                 catch {
-                    print ("Error while parsing JSON response")
+                    print ("Error getting data")
                 }
                 
             }
             
         }
+        
+        
+        
+        
     }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    // MARK: Actions
+    @IBAction func zoomInPressed(_ sender: Any) {
+        
+        print("zoom in!")
+        
+        var r = mapView.region
+        
+        print("Current zoom: \(r.span.latitudeDelta)")
+        
+        r.span.latitudeDelta = r.span.latitudeDelta / 4
+        r.span.longitudeDelta = r.span.longitudeDelta / 4
+        print("New zoom: \(r.span.latitudeDelta)")
+        print("-=------")
+        self.mapView.setRegion(r, animated: true)
+        
+        // HINT: Check MapExamples/ViewController.swift
+    }
+    
+    @IBAction func zoomOutPressed(_ sender: Any) {
+        // zoom out
+        print("zoom out!")
+        
+        var r = mapView.region
+        r.span.latitudeDelta = r.span.latitudeDelta * 2
+        r.span.longitudeDelta = r.span.longitudeDelta * 2
+        self.mapView.setRegion(r, animated: true)
+        
+        // HINT: Check MapExamples/ViewController.swift
+    }
+    
     
     /*
      // MARK: - Navigation
