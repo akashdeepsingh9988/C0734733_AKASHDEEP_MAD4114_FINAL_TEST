@@ -1,10 +1,6 @@
-//
+
 //  LoginViewController.swift
 //  InClassExercisesStarter
-//
-//  Created by parrot on 2018-11-22.
-//  Copyright © 2018 room1. All rights reserved.
-//
 
 import UIKit
 import FirebaseAuth
@@ -56,18 +52,13 @@ class LoginViewController: UIViewController {
                // self.statusMessageLabel.text = error?.localizedDescription
             }
         }
-        
-        
     }
-    
     
     @IBAction func btnSignup(_ sender: Any) {
         email = txtEmail.text!
         password  = txtPassword.text!
         
-        
-        
-        
+        // Authorize user
         Auth.auth().createUser(withEmail: email, password: password) {
             
             (user, error) in
@@ -79,8 +70,6 @@ class LoginViewController: UIViewController {
                 print("Email: \(user?.user.email)")
                 
                 self.txtMessage.text = "Account Created. Please login to countinue"
-                
-                
             }
             else {
                 // 1. Error when creating a user
@@ -93,24 +82,17 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
             var user = ""
         if UserDefaults.standard.object(forKey: "userId") != nil
         {
-        user =  UserDefaults.standard.string(forKey: "userId")!
-        print("uuuuuu", user)
-        
-            print("in if" )
-            
-            //self.performSegue(withIdentifier: "loginSegue", sender: nil)
-            
+            user =  UserDefaults.standard.string(forKey: "userId")!
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "tableVC") as! MenuTableViewController
             self.present(newViewController, animated: true, completion: nil)
-
-        
         }
         
     }
@@ -118,22 +100,4 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    
-    // MARK: Actions
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

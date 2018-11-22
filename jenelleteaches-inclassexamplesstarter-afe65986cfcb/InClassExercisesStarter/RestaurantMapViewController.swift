@@ -1,11 +1,7 @@
 
-//
 //  RestaurantMapViewController.swift
 //  InClassExercisesStarter
-//
-//  Created by parrot on 2018-11-22.
-//  Copyright © 2018 room1. All rights reserved.
-//
+
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -16,6 +12,7 @@ class RestaurantMapViewController: UIViewController, MKMapViewDelegate {
     // MARK: Outlets
     @IBOutlet weak var mapView: MKMapView!
     
+    // variables for getting lat and
     var lat = ""
     var lng = ""
     

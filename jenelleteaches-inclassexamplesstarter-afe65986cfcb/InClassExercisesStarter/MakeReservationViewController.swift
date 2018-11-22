@@ -1,4 +1,4 @@
-// make reservation
+// Reservation VC for reserving restraunts
 
 import UIKit
 import FirebaseFirestore
@@ -23,7 +23,6 @@ class MakeReservationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         bc = UserDefaults.standard.string(forKey: "userId")!
         print(bc)
         db = Firestore.firestore()
@@ -42,32 +41,25 @@ class MakeReservationViewController: UIViewController {
     // MARK: Actions
     @IBAction func buttonPressed(_ sender: Any) {
         print("pressed the button")
-
-        
-            
+// url to fetch data from webpage
             let url = "https://opentable.herokuapp.com/api/restaurants?city=Toronto&per_page=5"
             
             Alamofire.request(url, method: .get, parameters: nil).responseJSON {
                 (response) in
           
-                
                 if (response.result.isSuccess) {
                     print("awesome, i got a response from the website!")
                    // print(response.data)
                     
                     do {
                         let json = try JSON(data:response.data!)
-                        //print(json)
-                        // print("\(json["restaurants"][0]["name"])")
-                        let arr = [0, 1, 2, 3, 4]
-                        for i in arr
+                        let array = [0, 1, 2, 3, 4]
+                        for i in array
                         {
-                            // 3. OPTIONAL: add a information popup (a "bubble")
                             var n  = json["restaurants"][i]["name"].string!
                             self.name.append(n)
                             print("name == ", self.name)
-                            
-                     
+
                         }
                     }
                     catch {
@@ -81,39 +73,27 @@ class MakeReservationViewController: UIViewController {
         if (name.contains(nameTextField.text!))
         {
         
+            // Creating collection for reservation
         let res = db.collection("reservations")
         
-        
-    
-        
+            //Sending data to firebase firestore
         res.document(bc + nameTextField.text! + dayTextField.text!).setData([
             "username": bc,
             "restaurant": nameTextField.text!,
             "day" : dayTextField.text!,
             "numSeats": seatsTextField.text!
                         ])
+            
+            // message after sucessful insertion
             msgL.text = "Reservation Successfull.  Go back and see the reservations menu"
     }
         
+            // message if restaraunt in the the list or invalid restaraunt name
         else
         {
             msgL.text = "Error! Try again later "
         }
-     
-        
         
     }
-    
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
