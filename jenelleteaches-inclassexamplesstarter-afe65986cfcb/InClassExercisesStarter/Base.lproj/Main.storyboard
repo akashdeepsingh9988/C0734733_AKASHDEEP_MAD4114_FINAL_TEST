@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q5P-2D-QqU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Ld-cn-haq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -174,7 +174,7 @@
                                 <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Signup"/>
                                 <connections>
-                                    <action selector="signupButtonPressed:" destination="5Ld-cn-haq" eventType="touchUpInside" id="Pzg-pz-Nle"/>
+                                    <action selector="btnSignup:" destination="5Ld-cn-haq" eventType="touchUpInside" id="ddD-Ge-LZP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elB-f4-lrV">
@@ -183,7 +183,8 @@
                                 <color key="backgroundColor" red="0.64922531419999996" green="0.99953407049999998" blue="0.83325098980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <action selector="loginButtonPressed:" destination="5Ld-cn-haq" eventType="touchUpInside" id="Cuv-IW-FUu"/>
+                                    <action selector="btnLogin:" destination="5Ld-cn-haq" eventType="touchUpInside" id="0UT-Xg-NCB"/>
+                                    <segue destination="irl-Fk-UKc" kind="show" identifier="loginSegue" id="iyz-zH-0bL"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="[Put success + error messages here]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufh-rV-Yoh">
@@ -199,7 +200,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="c4E-81-OKl"/>
                     <connections>
-                        <segue destination="irl-Fk-UKc" kind="show" identifier="segueLoginSignup" id="D1g-58-9Kn"/>
+                        <outlet property="txtEmail" destination="JYu-QG-jE5" id="uAk-rD-Vl2"/>
+                        <outlet property="txtMessage" destination="ufh-rV-Yoh" id="6tg-Sp-tP8"/>
+                        <outlet property="txtPassword" destination="XWN-mG-Ba1" id="2jj-uM-mcq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwE-AQ-hxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,12 +228,13 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="irl-Fk-UKc" id="EcG-kJ-VyG"/>
-                            <outlet property="delegate" destination="irl-Fk-UKc" id="Fkl-TK-j2O"/>
+                            <outlet property="dataSource" destination="irl-Fk-UKc" id="qP6-Ax-5pN"/>
+                            <outlet property="delegate" destination="irl-Fk-UKc" id="UQH-7u-CBi"/>
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="YJd-aH-F1Y" kind="show" identifier="segueMakeReservation" id="ar9-uN-koG"/>
+                        <segue destination="YJd-aH-F1Y" kind="show" identifier="makeReservation" id="HP3-0q-Ax4"/>
+                        <segue destination="q5P-2D-QqU" kind="show" identifier="viewRest" id="2RQ-ID-CnE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSU-kd-OpR" userLabel="First Responder" sceneMemberID="firstResponder"/>

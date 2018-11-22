@@ -7,9 +7,84 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
+    var email = ""
+    var password = ""
+    @IBOutlet weak var txtMessage: UILabel!
+    
+    @IBAction func btnLogin(_ sender: Any) {
+        email = txtEmail.text!
+        password  = txtPassword.text!
+        
+        Auth.auth().signIn(withEmail: email, password: password) {
+            
+            (user, error) in
+            
+            if (user != nil) {
+                // 1. Found a user!
+                print("User signed in! ")
+                print("User id: \(user?.user.uid)")
+                print("Email: \(user?.user.email)")
+                
+                // 2. So send them to screen 2!
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            }
+            else {
+                // 1. A problem occured when looking up  the user
+                // - doesn't meet password requirements
+                // - user already exists
+                print("ERROR!")
+                print(error?.localizedDescription)
+                
+                self.txtMessage.text = error?.localizedDescription
+                
+                // 2. Show the error in user interface
+               // self.statusMessageLabel.text = error?.localizedDescription
+            }
+        }
+        
+        
+    }
+    
+    
+    @IBAction func btnSignup(_ sender: Any) {
+        email = txtEmail.text!
+        password  = txtPassword.text!
+        Auth.auth().createUser(withEmail: email, password: password) {
+            
+            (user, error) in
+            
+            if (user != nil) {
+                // 1. New user created!
+                print("Created user: ")
+                print("User id: \(user?.user.uid)")
+                print("Email: \(user?.user.email)")
+                
+                //2. @TODO: You decide what you want to do next!
+                // - do you want to send them to the next page?
+                // - maybe ask them to fill in other forms?
+                // - show a tutorial?
+                
+                self.txtMessage.text = "Account Created. Please login to countinue"
+                
+                
+            }
+            else {
+                // 1. Error when creating a user
+                print("ERROR!")
+                print(error?.localizedDescription)
+                
+                // 2. Show the error in the UI
+                self.txtMessage.text = error?.localizedDescription
+                
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,21 +100,8 @@ class LoginViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        print("Pressed login button")
-        
-        // HINT:  The name of the segue that goes to the next screen is: segueLoginSignup
-        // You can check the name by going to Main.storyboard > clicking on segue > looking at Attributes Inspector
-    }
     
     
-    @IBAction func signupButtonPressed(_ sender: Any) {
-        print("pressed signup button")
-
-        // HINT:  The name of the segue that goes to the next screen is: segueLoginSignup
-        // You can check the name by going to Main.storyboard > clicking on segue > looking at Attributes Inspector
-        
-    }
     
     /*
     // MARK: - Navigation
