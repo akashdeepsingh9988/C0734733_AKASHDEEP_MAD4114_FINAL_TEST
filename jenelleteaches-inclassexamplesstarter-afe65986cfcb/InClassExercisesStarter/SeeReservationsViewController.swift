@@ -35,9 +35,17 @@ class SeeReservationsViewController: UIViewController {
                 
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
-                    var d  = document.data()
+                    
+                    
+                    var d  =  document["username"] as? String
+                    d?.append(contentsOf: "\n  Restaurant  :  "+(document["restaurant"] as? String)!)
+                    d?.append(contentsOf: "\n   Day  : "+(document["day"] as? String)!)
+                    d?.append(contentsOf: "\n   NumSeats  : "+(document["numSeats"] as? String)!)
                     //napshot.value["full_name"]
-                    self.textt.text = document["username"] as? String
+                    print("-----------------------------------")
+                    self.textt.text = d
+                    
+                    print("-----------------------------------")
                     
                 }
             }

@@ -258,7 +258,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4o-Im-Ohu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="90" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4o-Im-Ohu">
                                 <rect key="frame" x="0.0" y="88" width="375" height="559"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -356,6 +356,7 @@
                     </view>
                     <connections>
                         <outlet property="dayTextField" destination="539-rX-3Nn" id="IYj-n9-te6"/>
+                        <outlet property="msgL" destination="bdj-O4-6XO" id="Tkb-IO-sBH"/>
                         <outlet property="nameTextField" destination="BR8-88-JU2" id="1mn-Gk-JaX"/>
                         <outlet property="seatsTextField" destination="mC8-Zl-5m8" id="qf9-go-kQ0"/>
                     </connections>
