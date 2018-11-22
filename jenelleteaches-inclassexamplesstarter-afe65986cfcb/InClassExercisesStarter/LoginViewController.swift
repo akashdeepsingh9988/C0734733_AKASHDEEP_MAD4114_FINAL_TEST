@@ -31,6 +31,15 @@ class LoginViewController: UIViewController {
                 print("User id: \(user?.user.uid)")
                 print("Email: \(user?.user.email)")
                 
+                var id = user?.user.email
+                
+                let userDefaults = UserDefaults.standard
+                userDefaults.setValue(id, forKey: "userId")
+                userDefaults.synchronize()
+                
+                print("user id ", id)
+                
+                
                 // 2. So send them to screen 2!
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             }
@@ -55,6 +64,10 @@ class LoginViewController: UIViewController {
     @IBAction func btnSignup(_ sender: Any) {
         email = txtEmail.text!
         password  = txtPassword.text!
+        
+        
+        
+        
         Auth.auth().createUser(withEmail: email, password: password) {
             
             (user, error) in
@@ -64,11 +77,6 @@ class LoginViewController: UIViewController {
                 print("Created user: ")
                 print("User id: \(user?.user.uid)")
                 print("Email: \(user?.user.email)")
-                
-                //2. @TODO: You decide what you want to do next!
-                // - do you want to send them to the next page?
-                // - maybe ask them to fill in other forms?
-                // - show a tutorial?
                 
                 self.txtMessage.text = "Account Created. Please login to countinue"
                 
@@ -87,10 +95,25 @@ class LoginViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+            var user = ""
+        if UserDefaults.standard.object(forKey: "userId") != nil
+        {
+        user =  UserDefaults.standard.string(forKey: "userId")!
+        print("uuuuuu", user)
+        
+            print("in if" )
+            
+            //self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "tableVC") as! MenuTableViewController
+            self.present(newViewController, animated: true, completion: nil)
 
-        // Do any additional setup after loading the view.
+        
+        }
+        
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
